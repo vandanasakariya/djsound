@@ -10,6 +10,7 @@ import 'package:djapp/utils/size_utils.dart';
 import 'package:djapp/widget/App_Text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 
 class PlayScreen extends StatefulWidget {
   const PlayScreen({Key? key}) : super(key: key);
@@ -18,8 +19,45 @@ class PlayScreen extends StatefulWidget {
   State<PlayScreen> createState() => _PlayScreenState();
 }
 
-class _PlayScreenState extends State<PlayScreen> {
+class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   final PlayController playController = Get.put(PlayController());
+
+  final firstAudio = AudioPlayer();
+  final secondAudio = AudioPlayer();
+  final thirdAudio = AudioPlayer();
+  final fourAudio = AudioPlayer();
+  final fiveAudio = AudioPlayer();
+  final sixAudio = AudioPlayer();
+  final sevenAudio = AudioPlayer();
+  final eightAudio = AudioPlayer();
+  final nineAudio = AudioPlayer();
+  final tenAudio = AudioPlayer();
+  final elevenAudio = AudioPlayer();
+  final twelveAudio = AudioPlayer();
+  @override
+  void initState() {
+    super.initState();
+    first();
+    second();
+    third();
+    four();
+    five();
+    six();
+    seven();
+    eight();
+    nine();
+    ten();
+    eleven();
+    twelve();
+  }
+
+  @override
+  void dispose() {
+    // audioplayer
+    // player.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,7 +98,10 @@ class _PlayScreenState extends State<PlayScreen> {
                         ],
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          /* var data =
+                              await player!.setAsset('asset/audios/audio1.wav');*/
+
                           Navigation.pushNamed(Routes.recodpage);
                           print("tap");
                         },
@@ -84,7 +125,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     children: [
                       audioButton(
                         onTap: (a) {
-                          print("c1");
+                          firstAudio.play();
                         },
                         border: playController.isChange.value == 1
                             ? Border.all(color: Colors.white)
@@ -95,6 +136,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       ),
                       audioButton(
                         onTap: (a) {
+                          secondAudio.play();
                           print("c2");
                         },
                         border: playController.isChange.value == 2
@@ -106,6 +148,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       ),
                       audioButton(
                         onTap: (a) {
+                          thirdAudio.play();
                           print("c3");
                         },
                         border: playController.isChange.value == 3
@@ -127,6 +170,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     children: [
                       audioButton(
                         onTap: (a) {
+                          fourAudio.play();
                           print("c4");
                         },
                         // border: ,
@@ -139,6 +183,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       ),
                       audioButton(
                         onTap: (a) {
+                          firstAudio.play();
                           print("c5");
                         },
                         border: playController.isChange.value == 5
@@ -150,6 +195,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       ),
                       audioButton(
                         onTap: (a) {
+                          sixAudio.play();
                           print("c6");
                         },
                         border: playController.isChange.value == 6
@@ -170,6 +216,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   children: [
                     audioButton(
                       onTap: (a) {
+                        sevenAudio.play();
                         print("c7");
                       },
                       border: playController.isChange.value == 7
@@ -181,6 +228,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     ),
                     audioButton(
                       onTap: (a) {
+                        eightAudio.play();
                         print("c8");
                       },
                       border: playController.isChange.value == 8
@@ -192,6 +240,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     ),
                     audioButton(
                       onTap: (a) {
+                        nineAudio.play();
                         print("c9");
                       },
                       border: playController.isChange.value == 9
@@ -211,6 +260,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   children: [
                     audioButton(
                       onTap: (a) {
+                        tenAudio.play();
                         print("c10");
                       },
                       border: playController.isChange.value == 10
@@ -222,6 +272,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     ),
                     audioButton(
                       onTap: (a) {
+                        elevenAudio.play();
                         print("c11");
                       },
                       border: playController.isChange.value == 11
@@ -233,6 +284,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     ),
                     audioButton(
                       onTap: (a) {
+                        twelveAudio.play();
                         print("c12");
                       },
                       border: playController.isChange.value == 12
@@ -300,5 +352,137 @@ class _PlayScreenState extends State<PlayScreen> {
         ],
       ),
     );
+  }
+
+  void first() {
+    firstAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          firstAudio.seek(Duration.zero);
+          firstAudio.stop();
+      }
+    });
+    firstAudio.setAsset("asset/audios/a1.mp3");
+  }
+
+  void second() {
+    secondAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          secondAudio.seek(Duration.zero);
+          secondAudio.stop();
+      }
+    });
+    secondAudio.setAsset("asset/audios/audio2.wav");
+  }
+
+  void third() {
+    thirdAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          thirdAudio.seek(Duration.zero);
+          thirdAudio.stop();
+      }
+    });
+    thirdAudio.setAsset("asset/audios/audio3.wav");
+  }
+
+  void four() {
+    fourAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          fourAudio.seek(Duration.zero);
+          fourAudio.stop();
+      }
+    });
+    fourAudio.setAsset("asset/audios/audio4.wav");
+  }
+
+  void five() {
+    fiveAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          fiveAudio.seek(Duration.zero);
+          fiveAudio.stop();
+      }
+    });
+    fiveAudio.setAsset("asset/audios/audio5.wav");
+  }
+
+  void six() {
+    sixAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          sixAudio.seek(Duration.zero);
+          sixAudio.stop();
+      }
+    });
+    sixAudio.setAsset("asset/audios/audio6.wav");
+  }
+
+  void seven() {
+    sevenAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          sevenAudio.seek(Duration.zero);
+          sevenAudio.stop();
+      }
+    });
+    sevenAudio.setAsset("asset/audios/audio7.wav");
+  }
+
+  void eight() {
+    eightAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          eightAudio.seek(Duration.zero);
+          eightAudio.stop();
+      }
+    });
+    eightAudio.setAsset("asset/audios/audio8.wav");
+  }
+
+  void nine() {
+    nineAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          nineAudio.seek(Duration.zero);
+          nineAudio.stop();
+      }
+    });
+    nineAudio.setAsset("asset/audios/audio9.mp3");
+  }
+
+  void ten() {
+    tenAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          tenAudio.seek(Duration.zero);
+          tenAudio.stop();
+      }
+    });
+    tenAudio.setAsset("asset/audios/audio10.mp3");
+  }
+
+  void eleven() {
+    elevenAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          elevenAudio.seek(Duration.zero);
+          elevenAudio.stop();
+      }
+    });
+    elevenAudio.setAsset("asset/audios/audio11.mp3");
+  }
+
+  void twelve() {
+    twelveAudio.playerStateStream.listen((state) {
+      switch (state.processingState) {
+        case ProcessingState.completed:
+          thirdAudio.seek(Duration.zero);
+          thirdAudio.stop();
+      }
+    });
+    thirdAudio.setAsset("asset/audios/audio12.mp3");
   }
 }
