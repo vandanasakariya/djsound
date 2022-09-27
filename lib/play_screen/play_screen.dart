@@ -404,6 +404,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
         case ProcessingState.completed:
           fiveAudio.seek(Duration.zero);
           fiveAudio.stop();
+          print("cfdtf");
       }
     });
     fiveAudio.setAsset("asset/audios/audio5.wav");
