@@ -1,16 +1,15 @@
-import 'package:djapp/play_screen/recod_page.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
 
-import '../play_screen/play_screen.dart';
+import '../home_screen/home_page.dart';
+import '../home_screen/play_screen/flute_play_screen.dart';
 import '../splash_screen/splash_screen.dart';
 
 mixin Routes {
   static const defaultTransition = Transition.rightToLeft;
   static const splashscreen = "/splashscreen";
   static const playScreen = "/PlayScreen";
-  static const recodpage = "/RecodPage";
+  static const homePage = "/HomePage";
 
   static List<GetPage<dynamic>> pages = [
     GetPage<dynamic>(
@@ -24,9 +23,10 @@ mixin Routes {
       transition: defaultTransition,
     ),
     GetPage<dynamic>(
-      name: recodpage,
-      page: () => RecodPage(),
+      name: homePage,
+      page: () => HomePage(),
       transition: defaultTransition,
     ),
+
   ];
 }

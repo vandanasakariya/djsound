@@ -40,8 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimeOut() {
     Timer(Duration(seconds: 3), () {
-      Navigation.pushNamed(Routes.playScreen);
-      print("playscreen");
+      Navigation.pushNamed(Routes.homePage);
+     // print("playscreen");
     });
   }
 }

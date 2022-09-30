@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:djapp/home_screen/play_screen/play_controller.dart';
 import 'package:djapp/navigation/navigation.dart';
 import 'package:djapp/navigation/routes.dart';
-import 'package:djapp/play_screen/play_controller.dart';
 import 'package:djapp/theme/app_color.dart';
 import 'package:djapp/theme/app_image.dart';
 import 'package:djapp/theme/app_string.dart';
@@ -34,6 +34,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   final tenAudio = AudioPlayer();
   final elevenAudio = AudioPlayer();
   final twelveAudio = AudioPlayer();
+
   @override
   void initState() {
     super.initState();
@@ -61,243 +62,209 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: WillPopScope(
-        onWillPop: () {
-          exit(0);
-        },
-        child: Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: SizeUtils.verticalBlockSize * 1,
-                horizontal: SizeUtils.horizontalBlockSize * 1),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: SizeUtils.verticalBlockSize * 1,
+              horizontal: SizeUtils.horizontalBlockSize * 1),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeUtils.verticalBlockSize * 2,
+                    vertical: SizeUtils.horizontalBlockSize * 5),
+                child: Row(
+                  //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    IconButton(
+                      onPressed: () {Navigation.pop();},
+                      icon: Icon(Icons.arrow_back),
+                    ),
+                    SizedBox(width: SizeUtils.horizontalBlockSize*17,),
                     AppText(
                       text: AppString.dubstepClub,
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      /* horizontal: SizeUtils.horizontalBlockSize * 2,*/
-                      vertical: SizeUtils.verticalBlockSize * 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Image.asset(AppImage.loading,
-                              height: SizeUtils.horizontalBlockSize * 5),
-                          AppText(
-                            text: AppString.bpm,
-                            fontSize: SizeUtils.fSize_10(),
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          /* var data =
-                              await player!.setAsset('asset/audios/audio1.wav');*/
-
-                          Navigation.pushNamed(Routes.recodpage);
-                          print("tap");
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset(AppImage.recoding,
-                                height: SizeUtils.horizontalBlockSize * 5),
-                            AppText(
-                              text: AppString.record,
-                              fontSize: SizeUtils.fSize_10(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      audioButton(
-                        onTap: (a) {
-                          firstAudio.play();
-                        },
-                        border: playController.isChange.value == 1
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 1
-                            ? Colors.white54
-                            : AppColor.inButton,
-                      ),
-                      audioButton(
-                        onTap: (a) {
-                          secondAudio.play();
-                          print("c2");
-                        },
-                        border: playController.isChange.value == 2
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 2
-                            ? Colors.white54
-                            : AppColor.inButton,
-                      ),
-                      audioButton(
-                        onTap: (a) {
-                          thirdAudio.play();
-                          print("c3");
-                        },
-                        border: playController.isChange.value == 3
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 3
-                            ? Colors.white54
-                            : AppColor.inButton,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: SizeUtils.verticalBlockSize * 1,
-                ),
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      audioButton(
-                        onTap: (a) {
-                          fourAudio.play();
-                          print("c4");
-                        },
-                        // border: ,
-                        border: playController.isChange.value == 4
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 4
-                            ? Colors.white54
-                            : AppColor.bsButton,
-                      ),
-                      audioButton(
-                        onTap: (a) {
-                          firstAudio.play();
-                          print("c5");
-                        },
-                        border: playController.isChange.value == 5
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 5
-                            ? Colors.white54
-                            : AppColor.bsButton,
-                      ),
-                      audioButton(
-                        onTap: (a) {
-                          sixAudio.play();
-                          print("c6");
-                        },
-                        border: playController.isChange.value == 6
-                            ? Border.all(color: Colors.white)
-                            : Border.all(color: Colors.transparent),
-                        color: playController.isChange.value == 6
-                            ? Colors.white54
-                            : AppColor.bsButton,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: SizeUtils.verticalBlockSize * 1,
-                ),
-                Row(
+              ),
+              Obx(
+                () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     audioButton(
                       onTap: (a) {
-                        sevenAudio.play();
-                        print("c7");
+                        firstAudio.play();
                       },
-                      border: playController.isChange.value == 7
+                      border: playController.isChange.value == 1
                           ? Border.all(color: Colors.white)
                           : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 7
-                          ? Colors.white54
-                          : AppColor.drButton,
-                    ),
-                    audioButton(
-                      onTap: (a) {
-                        eightAudio.play();
-                        print("c8");
-                      },
-                      border: playController.isChange.value == 8
-                          ? Border.all(color: Colors.white)
-                          : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 8
-                          ? Colors.white54
-                          : AppColor.drButton,
-                    ),
-                    audioButton(
-                      onTap: (a) {
-                        nineAudio.play();
-                        print("c9");
-                      },
-                      border: playController.isChange.value == 9
-                          ? Border.all(color: Colors.white)
-                          : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 9
-                          ? Colors.white54
-                          : AppColor.drButton,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: SizeUtils.verticalBlockSize * 1,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    audioButton(
-                      onTap: (a) {
-                        tenAudio.play();
-                        print("c10");
-                      },
-                      border: playController.isChange.value == 10
-                          ? Border.all(color: Colors.white)
-                          : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 10
+                      color: playController.isChange.value == 1
                           ? Colors.white54
                           : AppColor.inButton,
                     ),
                     audioButton(
                       onTap: (a) {
-                        elevenAudio.play();
-                        print("c11");
+                        secondAudio.play();
+                        print("c2");
                       },
-                      border: playController.isChange.value == 11
+                      border: playController.isChange.value == 2
                           ? Border.all(color: Colors.white)
                           : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 11
+                      color: playController.isChange.value == 2
                           ? Colors.white54
                           : AppColor.inButton,
                     ),
                     audioButton(
                       onTap: (a) {
-                        twelveAudio.play();
-                        print("c12");
+                        thirdAudio.play();
+                        print("c3");
                       },
-                      border: playController.isChange.value == 12
+                      border: playController.isChange.value == 3
                           ? Border.all(color: Colors.white)
                           : Border.all(color: Colors.transparent),
-                      color: playController.isChange.value == 12
+                      color: playController.isChange.value == 3
                           ? Colors.white54
                           : AppColor.inButton,
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: SizeUtils.verticalBlockSize * 1,
+              ),
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    audioButton(
+                      onTap: (a) {
+                        fourAudio.play();
+                        print("c4");
+                      },
+                      // border: ,
+                      border: playController.isChange.value == 4
+                          ? Border.all(color: Colors.white)
+                          : Border.all(color: Colors.transparent),
+                      color: playController.isChange.value == 4
+                          ? Colors.white54
+                          : AppColor.bsButton,
+                    ),
+                    audioButton(
+                      onTap: (a) {
+                        fiveAudio.play();
+                        print("c5");
+                      },
+                      border: playController.isChange.value == 5
+                          ? Border.all(color: Colors.white)
+                          : Border.all(color: Colors.transparent),
+                      color: playController.isChange.value == 5
+                          ? Colors.white54
+                          : AppColor.bsButton,
+                    ),
+                    audioButton(
+                      onTap: (a) {
+                        sixAudio.play();
+                        print("c6");
+                      },
+                      border: playController.isChange.value == 6
+                          ? Border.all(color: Colors.white)
+                          : Border.all(color: Colors.transparent),
+                      color: playController.isChange.value == 6
+                          ? Colors.white54
+                          : AppColor.bsButton,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: SizeUtils.verticalBlockSize * 1,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  audioButton(
+                    onTap: (a) {
+                      sevenAudio.play();
+                      print("c7");
+                    },
+                    border: playController.isChange.value == 7
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 7
+                        ? Colors.white54
+                        : AppColor.drButton,
+                  ),
+                  audioButton(
+                    onTap: (a) {
+                      eightAudio.play();
+                      print("c8");
+                    },
+                    border: playController.isChange.value == 8
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 8
+                        ? Colors.white54
+                        : AppColor.drButton,
+                  ),
+                  audioButton(
+                    onTap: (a) {
+                      nineAudio.play();
+                      print("c9");
+                    },
+                    border: playController.isChange.value == 9
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 9
+                        ? Colors.white54
+                        : AppColor.drButton,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: SizeUtils.verticalBlockSize * 1,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  audioButton(
+                    onTap: (a) {
+                      tenAudio.play();
+                      print("c10");
+                    },
+                    border: playController.isChange.value == 10
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 10
+                        ? Colors.white54
+                        : AppColor.inButton,
+                  ),
+                  audioButton(
+                    onTap: (a) {
+                      elevenAudio.play();
+                      print("c11");
+                    },
+                    border: playController.isChange.value == 11
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 11
+                        ? Colors.white54
+                        : AppColor.inButton,
+                  ),
+                  audioButton(
+                    onTap: (a) {
+                      twelveAudio.play();
+                      print("c12");
+                    },
+                    border: playController.isChange.value == 12
+                        ? Border.all(color: Colors.white)
+                        : Border.all(color: Colors.transparent),
+                    color: playController.isChange.value == 12
+                        ? Colors.white54
+                        : AppColor.inButton,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -480,10 +447,10 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     twelveAudio.playerStateStream.listen((state) {
       switch (state.processingState) {
         case ProcessingState.completed:
-          thirdAudio.seek(Duration.zero);
-          thirdAudio.stop();
+          twelveAudio.seek(Duration.zero);
+          twelveAudio.stop();
       }
     });
-    thirdAudio.setAsset("asset/audios/audio12.mp3");
+    twelveAudio.setAsset("asset/audios/audio12.mp3");
   }
 }
