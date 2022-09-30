@@ -9,6 +9,7 @@ import 'package:djapp/theme/app_string.dart';
 import 'package:djapp/utils/size_utils.dart';
 import 'package:djapp/widget/App_Text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -99,9 +100,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          /* var data =
-                              await player!.setAsset('asset/audios/audio1.wav');*/
-
                           Navigation.pushNamed(Routes.recodpage);
                           print("tap");
                         },
@@ -114,6 +112,21 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                               fontSize: SizeUtils.fSize_10(),
                             ),
                           ],
+                        ),
+                      ),
+                      Obx(
+                        () => Container(
+                          child: FlutterSwitch(
+                              value: playController.status1.value,
+                              width: SizeUtils.verticalBlockSize * 6.5,
+                              height: SizeUtils.horizontalBlockSize * 6,
+                              valueFontSize: 5.0,
+                              borderRadius: 10,
+                              padding: 5.0,
+                              showOnOff: true,
+                              onToggle: (val) {
+                                playController.status1.value = val;
+                              }),
                         ),
                       ),
                     ],
