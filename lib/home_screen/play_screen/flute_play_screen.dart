@@ -22,7 +22,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   final PlayController playController = Get.put(PlayController());
-
+  var playaudio;
   final firstAudio = AudioPlayer();
   final secondAudio = AudioPlayer();
   final thirdAudio = AudioPlayer();
@@ -38,11 +38,12 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   @override
   void initState() {
+    playaudio = Get.arguments;
     super.initState();
     first();
     second();
     third();
-    four();
+    /*four();
     five();
     six();
     seven();
@@ -50,7 +51,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     nine();
     ten();
     eleven();
-    twelve();
+    twelve();*/
   }
 
   @override
@@ -62,6 +63,9 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    print("audios${playaudio["audio"][0]}");
+    print("audios${playaudio["audio"][1]}");
+    print("audios${playaudio["audio"][2]}");
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -78,10 +82,14 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                   //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                      onPressed: () {Navigation.pop();},
+                      onPressed: () {
+                        Navigation.pop();
+                      },
                       icon: Icon(Icons.arrow_back),
                     ),
-                    SizedBox(width: SizeUtils.horizontalBlockSize*17,),
+                    SizedBox(
+                      width: SizeUtils.horizontalBlockSize * 17,
+                    ),
                     AppText(
                       text: AppString.dubstepClub,
                     ),
@@ -133,7 +141,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
               SizedBox(
                 height: SizeUtils.verticalBlockSize * 1,
               ),
-              Obx(
+              /* Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -264,7 +272,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                         : AppColor.inButton,
                   ),
                 ],
-              ),
+              ),*/
             ],
           ),
         ),
@@ -330,7 +338,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           firstAudio.stop();
       }
     });
-    firstAudio.setAsset("asset/audios/a1.mp3");
+    firstAudio.setAsset("${playaudio["audio"][0]}");
   }
 
   void second() {
@@ -341,7 +349,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           secondAudio.stop();
       }
     });
-    secondAudio.setAsset("asset/audios/audio2.wav");
+    secondAudio.setAsset("${playaudio["audio"][1]}");
   }
 
   void third() {
@@ -352,7 +360,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           thirdAudio.stop();
       }
     });
-    thirdAudio.setAsset("asset/audios/audio3.wav");
+    thirdAudio.setAsset("${playaudio["audio"][2]}");
   }
 
   void four() {

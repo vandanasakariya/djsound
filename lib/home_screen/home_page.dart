@@ -23,7 +23,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: WillPopScope(onWillPop:(){exit(0);} ,
+      child: WillPopScope(
+        onWillPop: () {
+          exit(0);
+        },
         child: Scaffold(
           body: PageView.builder(
             itemCount: playController.img.length,
@@ -33,11 +36,14 @@ class _HomePageState extends State<HomePage> {
               playController.img.value[index];
               return GestureDetector(
                 onTap: () {
-                 Navigation.pushNamed(Routes.playScreen);
-
+                  Navigation.pushNamed(Routes.playScreen, arg: {
+                    "audio": playController.img.value[index]["audiofile"],
+                  });
+                  print("play${playController.img.value[index]["audiofile"]}");
                 },
                 child: Container(
-                  child: Image.asset(playController.img.value[index], fit: BoxFit.fill),
+                  child: Image.asset(playController.img.value[index]["img"],
+                      fit: BoxFit.fill),
                 ),
               );
               /* Padding(
