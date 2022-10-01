@@ -43,7 +43,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     first();
     second();
     third();
-    /*four();
+    four();
     five();
     six();
     seven();
@@ -51,7 +51,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
     nine();
     ten();
     eleven();
-    twelve();*/
+    twelve();
   }
 
   @override
@@ -141,7 +141,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
               SizedBox(
                 height: SizeUtils.verticalBlockSize * 1,
               ),
-              /* Obx(
+               Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -272,7 +272,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
                         : AppColor.inButton,
                   ),
                 ],
-              ),*/
+              ),
             ],
           ),
         ),
@@ -371,7 +371,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           fourAudio.stop();
       }
     });
-    fourAudio.setAsset("asset/audios/audio4.wav");
+    fourAudio.setAsset("${playaudio["audio"][3]}");
   }
 
   void five() {
@@ -383,7 +383,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           print("cfdtf");
       }
     });
-    fiveAudio.setAsset("asset/audios/audio5.wav");
+    fiveAudio.setAsset("${playaudio["audio"][4]}");
   }
 
   void six() {
@@ -394,7 +394,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           sixAudio.stop();
       }
     });
-    sixAudio.setAsset("asset/audios/audio6.wav");
+    sixAudio.setAsset("${playaudio["audio"][5]}");
   }
 
   void seven() {
@@ -405,7 +405,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           sevenAudio.stop();
       }
     });
-    sevenAudio.setAsset("asset/audios/audio7.wav");
+    sevenAudio.setAsset("${playaudio["audio"][6]}");
   }
 
   void eight() {
@@ -416,7 +416,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           eightAudio.stop();
       }
     });
-    eightAudio.setAsset("asset/audios/audio8.wav");
+    eightAudio.setAsset("${playaudio["audio"][7]}");
   }
 
   void nine() {
@@ -427,7 +427,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           nineAudio.stop();
       }
     });
-    nineAudio.setAsset("asset/audios/audio9.mp3");
+    nineAudio.setAsset("${playaudio["audio"][8]}");
   }
 
   void ten() {
@@ -438,7 +438,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           tenAudio.stop();
       }
     });
-    tenAudio.setAsset("asset/audios/audio10.mp3");
+    tenAudio.setAsset("${playaudio["audio"][9]}");
   }
 
   void eleven() {
@@ -449,7 +449,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           elevenAudio.stop();
       }
     });
-    elevenAudio.setAsset("asset/audios/audio11.mp3");
+    elevenAudio.setAsset("${playaudio["audio"][10]}");
   }
 
   void twelve() {
@@ -460,6 +460,6 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
           twelveAudio.stop();
       }
     });
-    twelveAudio.setAsset("asset/audios/audio12.mp3");
+    twelveAudio.setAsset("${playaudio["audio"][11]}");
   }
 }
