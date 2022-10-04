@@ -27,7 +27,7 @@ class _BannerAdsState extends State<BannerAds> {
   void adsFunction() async {
     _ad = BannerAd(
       size: AdSize.fullBanner,
-      adUnitId: "	ca-app-pub-3940256099942544/6300978111",
+      adUnitId: "ca-app-pub-3940256099942544/6300978111",
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           setState(() {

@@ -1,16 +1,12 @@
-import 'dart:io';
 
 import 'package:djapp/ad_manager/banner_ad.dart';
 import 'package:djapp/home_screen/play_screen/play_controller.dart';
 import 'package:djapp/navigation/navigation.dart';
-import 'package:djapp/navigation/routes.dart';
 import 'package:djapp/theme/app_color.dart';
-import 'package:djapp/theme/app_image.dart';
 import 'package:djapp/theme/app_string.dart';
 import 'package:djapp/utils/size_utils.dart';
 import 'package:djapp/widget/App_Text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
