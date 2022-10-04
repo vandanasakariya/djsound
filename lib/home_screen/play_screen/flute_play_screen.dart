@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:djapp/ad_manager/banner_ad.dart';
 import 'package:djapp/home_screen/play_screen/play_controller.dart';
 import 'package:djapp/navigation/navigation.dart';
 import 'package:djapp/navigation/routes.dart';
@@ -13,6 +14,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../../ad_manager/ad_controller.dart';
+
 class PlayScreen extends StatefulWidget {
   const PlayScreen({Key? key}) : super(key: key);
 
@@ -22,6 +25,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
   final PlayController playController = Get.put(PlayController());
+  final AdController adController = Get.find();
   var playaudio;
   final firstAudio = AudioPlayer();
   final secondAudio = AudioPlayer();
@@ -276,6 +280,7 @@ class _PlayScreenState extends State<PlayScreen> with WidgetsBindingObserver {
             ],
           ),
         ),
+        bottomNavigationBar: Container(child: BannerAds(),),
       ),
     );
   }

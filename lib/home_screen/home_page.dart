@@ -1,12 +1,18 @@
 import 'dart:developer';
+import 'dart:ffi';
 import 'dart:io';
 
+import 'package:djapp/ad_manager/banner_ad.dart';
 import 'package:djapp/home_screen/play_screen/flute_play_screen.dart';
 import 'package:djapp/home_screen/play_screen/play_controller.dart';
 import 'package:djapp/navigation/navigation.dart';
 import 'package:djapp/navigation/routes.dart';
+import 'package:djapp/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../ad_manager/ad_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +25,7 @@ late final List<String> listArts;
 
 class _HomePageState extends State<HomePage> {
   final PlayController playController = Get.put(PlayController());
-
+  final AdController adController = Get.find();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,35 +33,70 @@ class _HomePageState extends State<HomePage> {
         onWillPop: () {
           exit(0);
         },
+
         child: Scaffold(
-          body: PageView.builder(
-            itemCount: playController.img.length,
-            scrollDirection: Axis.horizontal,
-            reverse: false,
-            itemBuilder: (BuildContext context, int index) {
-              playController.img.value[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigation.pushNamed(Routes.playScreen, arg: {
-                    "audio": playController.img.value[index]["audiofile"],
-                  });
-                  print("play${playController.img.value[index]["audiofile"]}");
-                },
-                child: Container(
-                  child: Image.asset(playController.img.value[index]["img"],
-                      fit: BoxFit.fill),
-                ),
-              );
-              /* Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.0),
-                child: Container(
-                  child: Image.asset(AppImage.flute),
-                ),
-              );*/
-            },
+          backgroundColor: Colors.black,
+          body: Obx(()=>
+             PageView.builder(
+              controller: playController.pageController,
+              itemCount: playController.img.length,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (value) {
+                playController.pageSelect.value = value;
+              },
+              itemBuilder: (BuildContext context, int index) {
+                playController.img.value[index];
+                return GestureDetector(
+                  onTap: () {
+                    BannerAds();
+                    Navigation.pushNamed(
+                      Routes.playScreen,
+                      arg: {
+                        "audio": playController.img.value[index]["audiofile"],
+                      },
+                    );
+                    print("play${playController.img.value[index]["audiofile"]}");
+                  },
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: SizeUtils.verticalBlockSize * 6),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                              playController.img.value[index]["img"],
+                              height: SizeUtils.verticalBlockSize * 34,fit: BoxFit.fill),
+                        ),
+                      ),
+                      SizedBox(
+                        height: SizeUtils.horizontalBlockSize * 5,
+                      ),
+                      _buildStepIndicator(),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
+          bottomNavigationBar: Container(child: BannerAds()),
         ),
       ),
+
+    );
+  }
+
+  Widget _buildStepIndicator() {
+    return SmoothPageIndicator(
+      controller: playController.pageController,
+      count: 3,
+      axisDirection: Axis.horizontal,
+      effect: SlideEffect(
+          spacing: 3,
+          dotHeight: SizeUtils.horizontalBlockSize * 1.6,
+          paintStyle: PaintingStyle.fill,
+          dotColor: Colors.grey,
+          activeDotColor: Colors.green),
     );
   }
 }

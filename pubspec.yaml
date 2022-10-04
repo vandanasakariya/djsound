@@ -39,6 +39,9 @@ dependencies:
   just_audio: ^0.9.29
   flutter_switch: ^0.3.2
   flutter_launcher_icons: ^0.10.0
+  smooth_page_indicator: ^1.0.0+2
+  google_mobile_ads: ^2.0.1
+
 
 dev_dependencies:
   flutter_test:

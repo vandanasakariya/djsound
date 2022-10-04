@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_image.dart';
 
 class PlayController extends GetxController {
   RxInt isChange = 0.obs;
+  RxInt pageSelect=0.obs;
   RxBool isLoader = false.obs;
   RxBool isColor = false.obs;
+  final pageController= PageController(initialPage: 0);
   RxList img = [
     {
       "img": AppImage.flute,
