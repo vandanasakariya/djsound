@@ -12,6 +12,7 @@ import 'package:djapp/utils/size_utils.dart';
 import 'package:djapp/widget/App_Text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../ad_manager/ad_controller.dart';
@@ -84,7 +85,11 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Share.share(
+                                'check out my website https://example.com',
+                              );
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -92,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               alignment: Alignment.center,
                               width: SizeUtils.verticalBlockSize * 10,
-                              height: SizeUtils.horizontalBlockSize * 8,
+                              height: SizeUtils.horizontalBlockSize * 9,
                               child: AppText(
                                 text: AppString.share,
                               ),
@@ -107,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               alignment: Alignment.center,
                               width: SizeUtils.verticalBlockSize * 10,
-                              height: SizeUtils.horizontalBlockSize * 8,
+                              height: SizeUtils.horizontalBlockSize * 9,
                               child: AppText(
                                 text: AppString.rate,
                               ),
